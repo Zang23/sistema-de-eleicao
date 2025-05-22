@@ -2,9 +2,9 @@ package modelo;
 
 public class Apuracao {
 	
-	int secao;
-	int codCandidato;
-	int numEleitor;
+	private int secao;
+	private int codCandidato;
+	private int numEleitor;
 	
 	
 	
