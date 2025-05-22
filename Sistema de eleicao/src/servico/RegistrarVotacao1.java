@@ -10,22 +10,12 @@ public class RegistrarVotacao1 {
 		String fileName = "Eleitor.txt";
 		String fileWrite = "votacao" + opc + ".txt";
 		
-		
 		Vota[] votacoes = new Vota[10];
-		int[][] matrizVotacao = new int[2][4];
 		
 		pleArquivoEleitores(opc,votacoes,fileName);
 		pregistraCodCandidato(votacoes);
-		
-		//codVotacao = fgravaVotacao(votacoes, fileWrite, opc, codVotacao);
-		//matrizVotacao = fpreencheMatrizVotacao(codVotacao, matrizVotacao);
-		pclassificaMatriz(matrizVotacao);
-		
-		/*for(int i = 0; i < 2; i++) {
-			for(int j = 0; j < 4; j++) {
-				System.out.println(matrizVotacao[i][j]);
-			}
-		}*/
+		pclassificaVota(votacoes);
+		pgravaVotacao(votacoes, fileWrite);
 		
 	}
 	
@@ -88,30 +78,27 @@ public class RegistrarVotacao1 {
 		return 0;
 	}
 	
-	/*public int[] fgravaVotacao(Vota[] votacoes, String fileWrite, int opc, int[] codVotos )throws IOException {
+	public void pgravaVotacao(Vota[] votacoes, String fileWrite)throws IOException {
 		
 		BufferedWriter gravar = new BufferedWriter(new FileWriter(fileWrite));
 		
-		int candidato = 0;
 		for(int i = 0; i < 10; i++) {
 			Vota v = votacoes[i];
 			if(v.getSecao() != 0) {
+				
 				gravar.write(Integer.toString(v.getNumEleitor()));
 				gravar.newLine();
 				
-				int codCandidato = fverificaCandidato(0, codVotos);
-				v.setCodCandidato(codCandidato);
-				gravar.write(Integer.toString(codCandidato));
+				gravar.write(Integer.toString(v.getCodCandidato()));
 				gravar.newLine();
 				
 				gravar.write(Integer.toString(v.getSecao()));
 				gravar.newLine();
 			}
 		}
-		System.out.println("Votação: " + opc + " gravada com sucesso");
+		System.out.println("Votação gravada com sucesso");
 		gravar.close();
-		return codVotos;
-	}*/
+	}
 	
 	public void pregistraCodCandidato(Vota[] votacoes) {
 		
@@ -136,23 +123,30 @@ public class RegistrarVotacao1 {
 		
 	}
 	
-	public void pclassificaMatriz(int[][] matriz) {
+	public void pclassificaVota(Vota[] votacoes) {
 		int aux;
-		for(int i = 0; i < (matriz[0].length-1);i++) {
-			for(int j = (i+1); j < matriz[0].length; j++) {
-				if(matriz[0][i] < matriz[0][j]   ) {
-					aux = matriz[0][i];
-					matriz[0][i] = matriz[0][j];
-					matriz[0][j] = aux;
+		for(int i = 0; i < votacoes.length-1;i++) {
+			for(int j = (i+1); j < votacoes.length; j++) {
+				Vota vi = votacoes[i];
+				Vota vj = votacoes[j];
+				if(vi.getCodCandidato() > vj.getCodCandidato()) {
 					
-					aux = matriz[1][i];
-					matriz[1][i] = matriz[1][j];
-					matriz[1][j] = aux;
+					aux = vi.getCodCandidato();
+					vi.setCodCandidato(vj.getCodCandidato());
+					vj.setCodCandidato(aux);
 					
+					aux = vi.getNumEleitor();
+					vi.setNumEleitor(vj.getNumEleitor());
+					vj.setNumEleitor(aux);
+					
+					aux = vi.getSecao();
+					vi.setSecao(vj.getSecao());
+					vj.setSecao(aux);
 				}
 			}
 		}
 	}
+	
 
 	
 	}
