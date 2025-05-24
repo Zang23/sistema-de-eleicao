@@ -44,21 +44,15 @@ public class RegistrarVotacao1 {
 		int secaoVerificada = 0;
 		int numEleitor = 0;
 		for(int i = 0; i < 10; i++) {
-			if(opc == 1) {
-				numEleitor = Integer.parseInt(ler.readLine());
-				ler.readLine();
-				secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
-				
-			}else {
-				numEleitor = Integer.parseInt(ler.readLine());
-				ler.readLine();
-				secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
-			}
+			numEleitor = Integer.parseInt(ler.readLine());
+			ler.readLine();
+			secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
 			
 			votacoes[i] = new Vota(secaoVerificada, 0 ,numEleitor);
+			ler.close();
 		}
-		ler.close();
 	}
+		
 	
 	public int fverificaCandidato(int codVotacao, Vota[] votacoes) {
 		JFrame frame = new JFrame();
@@ -96,7 +90,7 @@ public class RegistrarVotacao1 {
 				gravar.newLine();
 			}
 		}
-		System.out.println("Votação gravada com sucesso");
+		System.out.println("Votaï¿½ï¿½o gravada com sucesso");
 		gravar.close();
 	}
 	
@@ -147,7 +141,6 @@ public class RegistrarVotacao1 {
 		}
 	}
 	
-
 	
 	}
 	

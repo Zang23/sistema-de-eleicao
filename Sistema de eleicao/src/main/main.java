@@ -13,14 +13,14 @@ public class main {
 		Scanner dados = new Scanner(System.in);
 		CadastrarEleitor ce = new CadastrarEleitor();
 		RegistrarVotacao1 rv = new RegistrarVotacao1();
-		
+		ApuraVotacao av = new ApuraVotacao();
 		
 		Eleitor[] eleitores = new Eleitor[10];
 		
 		int opc = 0;
 		
 		while(opc != 9) {
-			System.out.println("1- Cadastra Eleitor\n2- Cadastra Votação 1 e 2\n3- Agrupa Apuração\n4- Menu estatistica\n9- Fim");
+			System.out.println("1- Cadastra Eleitor\n2- Cadastra Votaï¿½ï¿½o 1 e 2\n3- Agrupa ApuraÃ§Ã£o\n4- Menu estatistica\n9- Fim");
 			opc = dados.nextInt();
 			
 			switch(opc) {
@@ -30,7 +30,7 @@ public class main {
 				case 2:
 					int opc2 = 0;
 					while(opc2 != 9) {
-						System.out.println("1- Cadastro Votação 1\n2-Cadastro Votação 2\n9- Fim");
+						System.out.println("1- Cadastro Votaï¿½ï¿½o 1\n2-Cadastro Votaï¿½ï¿½o 2\n9- Fim");
 						opc2 = dados.nextInt();
 						switch(opc2) {
 							case 1:
@@ -42,18 +42,19 @@ public class main {
 							case 9:
 								break;
 							default:
-								System.out.println("Opção invalida");
+								System.out.println("Opï¿½ï¿½o invalida");
 								break;
 						}
 					}
 				case 3:
+					av.papuraVotacao();
 					break;
 				case 4:
 					break;
 				case 9:
 					break;
 				default:
-					System.out.println("Opção invalida");
+					System.out.println("Opï¿½ï¿½o invalida");
 			}
 		}
 	}
