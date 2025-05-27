@@ -104,19 +104,6 @@ public class RegistrarVotacao1 {
 		}
 	}
 	
-	
-	public int[][] fpreencheMatrizVotacao(int[] codVotacao, int[][] matrizVotacao) {
-		
-		for(int i = 0; i < 4; i++) {
-			matrizVotacao[0][i] = codVotacao[i];
-			matrizVotacao[1][i] = i+1;
-		}
-		
-		return matrizVotacao;
-			
-		
-	}
-	
 	public void pclassificaVota(Vota[] votacoes) {
 		int aux;
 		for(int i = 0; i < votacoes.length-1;i++) {

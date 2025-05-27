@@ -22,7 +22,7 @@ public class Apuracao {
 		return secao;
 	}
 	
-	public void setSecao() {
+	public void setSecao(int secao) {
 		this.secao = secao;
 	}
 	
@@ -30,7 +30,7 @@ public class Apuracao {
 		return codCandidato;
 	}
 	
-	public void setCodCandidato() {
+	public void setCodCandidato(int codCandidato) {
 		this.codCandidato = codCandidato ;
 	}
 	
@@ -38,7 +38,7 @@ public class Apuracao {
 		return numEleitor;
 	}
 	
-	public void setNumEleitor() {
+	public void setNumEleitor(int numEleitor) {
 		this.numEleitor = numEleitor;
 	}
 }
