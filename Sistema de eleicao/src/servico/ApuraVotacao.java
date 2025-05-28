@@ -4,7 +4,6 @@ import java.io.*;
 import modelo.*;
 
 public class ApuraVotacao {
-
 	public void papuraVotacao()throws IOException {
 		String fileVotacao1 = "votacao1.txt";
 		String fileVotacao2 = "votacao2.txt";

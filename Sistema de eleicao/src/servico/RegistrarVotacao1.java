@@ -52,7 +52,6 @@ public class RegistrarVotacao1 {
 		
 		for(int i = 0; i < qLinhas; i++) {
 			
-			
 			numEleitor = Integer.parseInt(ler.readLine());
 			ler.readLine();
 			secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
