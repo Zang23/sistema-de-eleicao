@@ -12,11 +12,14 @@ public class RegistrarVotacao1 {
 		
 		Vota[] votacoes = new Vota[10];
 		
-		pleArquivoEleitores(opc,votacoes,fileName);
+		int contadorVota = fcontaSecao(fileName, opc);
+		System.out.println(contadorVota);
+		
+		/*pleArquivoEleitores(opc,votacoes,fileName);
 		pregistraCodCandidato(votacoes);
 		pclassificaVota(votacoes);
 		pgravaVotacao(votacoes, fileWrite);
-		
+		*/
 	}
 	
 	
@@ -49,7 +52,6 @@ public class RegistrarVotacao1 {
 			secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
 			
 			votacoes[i] = new Vota(secaoVerificada, 0 ,numEleitor);
-			ler.close();
 		}
 	}
 		
@@ -126,6 +128,23 @@ public class RegistrarVotacao1 {
 				}
 			}
 		}
+	}
+	
+	public int fcontaSecao(String fileName, int opc)throws IOException {
+		BufferedReader ler = new BufferedReader(new FileReader(fileName));
+		int contador = 0;
+		
+		while(ler.readLine() != null) {
+			if(opc == 1) {
+				if(Integer.parseInt(ler.readLine()) == 1 || Integer.parseInt(ler.readLine()) == 3 || Integer.parseInt(ler.readLine()) == 4) {
+					contador++;
+				}
+			}else {
+				contador++;
+			}
+		}
+		
+		return contador;
 	}
 	
 	

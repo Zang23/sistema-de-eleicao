@@ -23,6 +23,9 @@ public class ApuraVotacao {
 		
 		votosApurados = fapuraVotos(v1,v2);
 		
+		for(int i = 0; i < 4; i++) {
+			System.out.println(votosApurados[i]);
+		}
 	}
 	
 	public int fleLinhaArquivo(String fileName)throws IOException {
