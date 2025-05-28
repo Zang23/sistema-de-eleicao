@@ -1,6 +1,8 @@
 package servico;
 
 import modelo.*;
+import servico.ApuraVotacao;
+
 import java.io.*;
 import javax.swing.*;
 public class RegistrarVotacao1 {
@@ -10,17 +12,16 @@ public class RegistrarVotacao1 {
 		String fileName = "Eleitor.txt";
 		String fileWrite = "votacao" + opc + ".txt";
 		
-		Vota[] votacoes = new Vota[10];
 		
 		int contadorVota = fcontaSecao(fileName, opc);
-		System.out.println(contadorVota);
-		
-		/*pleArquivoEleitores(opc,votacoes,fileName);
+		Vota[] votacoes = new Vota[contadorVota];
+		pleArquivoEleitores(opc,votacoes,fileName);
 		pregistraCodCandidato(votacoes);
 		pclassificaVota(votacoes);
 		pgravaVotacao(votacoes, fileWrite);
-		*/
+		
 	}
+	
 	
 	
 	
@@ -43,10 +44,15 @@ public class RegistrarVotacao1 {
 	
 	public void pleArquivoEleitores(int opc, Vota[] votacoes, String fileName)throws IOException {
 		BufferedReader ler = new BufferedReader(new FileReader(fileName));
+		ApuraVotacao ap = new ApuraVotacao();
 		
 		int secaoVerificada = 0;
 		int numEleitor = 0;
-		for(int i = 0; i < 10; i++) {
+		int qLinhas = ap.fleLinhaArquivo(fileName);
+		
+		for(int i = 0; i < qLinhas; i++) {
+			
+			
 			numEleitor = Integer.parseInt(ler.readLine());
 			ler.readLine();
 			secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
@@ -78,8 +84,10 @@ public class RegistrarVotacao1 {
 		
 		BufferedWriter gravar = new BufferedWriter(new FileWriter(fileWrite));
 		
-		for(int i = 0; i < 10; i++) {
+		
+		for(int i = 0; i < votacoes.length; i++) {
 			Vota v = votacoes[i];
+			
 			if(v.getSecao() != 0) {
 				
 				gravar.write(Integer.toString(v.getNumEleitor()));
@@ -99,7 +107,7 @@ public class RegistrarVotacao1 {
 	public void pregistraCodCandidato(Vota[] votacoes) {
 		
 		int codCandidato = 0;
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < votacoes.length; i++) {
 			Vota v = votacoes[i];
 			codCandidato = fverificaCandidato(codCandidato,votacoes );
 			v.setCodCandidato(codCandidato);
@@ -107,6 +115,7 @@ public class RegistrarVotacao1 {
 	}
 	
 	public void pclassificaVota(Vota[] votacoes) {
+
 		int aux;
 		for(int i = 0; i < votacoes.length-1;i++) {
 			for(int j = (i+1); j < votacoes.length; j++) {
@@ -131,19 +140,31 @@ public class RegistrarVotacao1 {
 	}
 	
 	public int fcontaSecao(String fileName, int opc)throws IOException {
+
 		BufferedReader ler = new BufferedReader(new FileReader(fileName));
 		int contador = 0;
+		ApuraVotacao ap = new ApuraVotacao();
 		
-		while(ler.readLine() != null) {
+		
+		int qLinhas = ap.fleLinhaArquivo(fileName);
+		String linhaSecao;
+		for(int i = 0; i < qLinhas; i++) {
 			if(opc == 1) {
-				if(Integer.parseInt(ler.readLine()) == 1 || Integer.parseInt(ler.readLine()) == 3 || Integer.parseInt(ler.readLine()) == 4) {
+				ler.readLine();
+				ler.readLine();
+				linhaSecao = ler.readLine();
+				if(Integer.parseInt(linhaSecao) == 1 || Integer.parseInt(linhaSecao) == 3 || Integer.parseInt(linhaSecao) == 4) {
 					contador++;
 				}
 			}else {
-				contador++;
+				ler.readLine();
+				ler.readLine();
+				linhaSecao = ler.readLine();
+				if(Integer.parseInt(linhaSecao) == 5 || Integer.parseInt(linhaSecao) == 9 || Integer.parseInt(linhaSecao) == 10) {
+					contador++;
+				}
 			}
-		}
-		
+		}	
 		return contador;
 	}
 	
