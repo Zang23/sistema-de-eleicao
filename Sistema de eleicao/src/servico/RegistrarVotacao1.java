@@ -46,7 +46,7 @@ public class RegistrarVotacao1 {
 		BufferedReader ler = new BufferedReader(new FileReader(fileName));
 		ApuraVotacao ap = new ApuraVotacao();
 		
-		int secaoVerificada = 0;
+		int contador = 0;
 		int numEleitor = 0;
 		int qLinhas = ap.fleLinhaArquivo(fileName);
 		
@@ -54,9 +54,12 @@ public class RegistrarVotacao1 {
 			
 			numEleitor = Integer.parseInt(ler.readLine());
 			ler.readLine();
-			secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
+			int secaoVerificada = fverificaSecao(Integer.parseInt(ler.readLine()), opc);
 			
-			votacoes[i] = new Vota(secaoVerificada, 0 ,numEleitor);
+			if(secaoVerificada != 0) {
+				votacoes[contador++] = new Vota(secaoVerificada, 0 ,numEleitor);
+			}
+			
 		}
 	}
 		
