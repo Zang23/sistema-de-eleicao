@@ -4,7 +4,7 @@ import java.io.*;
 import modelo.*;
 
 public class ApuraVotacao {
-	public void papuraVotacao()throws IOException {
+	public int[] fapuraVotacao()throws IOException {
 		String fileVotacao1 = "votacao1.txt";
 		String fileVotacao2 = "votacao2.txt";
 		
@@ -20,10 +20,11 @@ public class ApuraVotacao {
 		pleArquivo(v1, fileVotacao1);
 		pleArquivo(v2, fileVotacao2);
 		
-		votosApurados = fapuraVotos(v1,v2);
+		return votosApurados = fapuraVotos(v1,v2);
 		
 		
 	}
+	
 	
 	public int fleLinhaArquivo(String fileName)throws IOException {
 		
